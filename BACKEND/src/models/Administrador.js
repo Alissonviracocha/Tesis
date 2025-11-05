@@ -47,7 +47,7 @@ const administradorSchema = new Schema({
     },
     rol:{
         type:String,
-        default:"administrador",
+        default:'administrador',
     }
 },{
     timestamps:true

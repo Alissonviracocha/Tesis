@@ -7,7 +7,7 @@ import mongoose from "mongoose"
 
 const registro = async (req,res)=>{
     const {email,password} = req.body
-    console.log('📥 req.body:', req.body); 
+    console.log('req.body:', req.body); 
     //2
     if (Object.values(req.body).includes("")) return res.status(400).json({msg:"Lo sentimos, debes llenar todos los campos"})
     
@@ -133,7 +133,7 @@ const perfil =(req,res)=>{
     res.status(200).json(datosPerfil)
 }
 
-const actualizarPerfil = async (req,res)=>{
+/*const actualizarPerfil = async (req,res)=>{
     const {id} = req.params
     const {nombre,apellido,direccion,celular,email} = req.body
     if( !mongoose.Types.ObjectId.isValid(id) ) return res.status(404).json({msg:`Lo sentimos, debe ser un id válido`});
@@ -157,6 +157,8 @@ const actualizarPerfil = async (req,res)=>{
     console.log(administradorBDD)
     res.status(200).json(administradorBDD)
 }
+*/
+
 
 const actualizarPassword = async (req,res)=>{
     const administradorBDD = await Administrador.findById(req.administradorBDD._id)
@@ -176,6 +178,5 @@ export {
     crearNuevoPassword,
     login,
     perfil,
-    actualizarPerfil,
     actualizarPassword
 }

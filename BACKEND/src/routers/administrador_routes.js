@@ -1,6 +1,6 @@
 import {Router} from 'express'
-import {actualizarPassword, actualizarPerfil, comprobarTokenPasword, confirmarMail, crearNuevoPassword, login, 
-perfil, recuperarPassword, registro } from '../controllers/administrador_controller.js'
+import {actualizarPassword, comprobarTokenPasword, confirmarMail, crearNuevoPassword, login,
+    perfil, recuperarPassword, registro } from '../controllers/administrador_controller.js'
 import { verificarTokenJWT } from '../middlewares/JWT.js'
 
 const router = Router()
@@ -15,7 +15,6 @@ router.post('/nuevopassword/:token',crearNuevoPassword)
 router.post('/login',login)
 
 router.get('/perfil',verificarTokenJWT,perfil)
-router.put('/administrador/:id',verificarTokenJWT,actualizarPerfil)
 
 router.put('/administrador/actualizarpassword/:id',verificarTokenJWT,actualizarPassword)    // cambie de esto '/actualizarpassword/:id' ---->   '/administrador/actualizarpassword/:id'
 

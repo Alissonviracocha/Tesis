@@ -4,19 +4,20 @@ import cors from 'cors';
 import routerAdministrador from './routers/administrador_routes.js';
 
 //Estudiante
-import cloudinary from 'cloudinary'
-import fileUpload from "express-fileupload"
 import routerEstudiante from './routers/estudiante_routes.js';
 
-//Deportes
-import routerDeportes from './routers/deportes_routes.js';
+//Docente
+import routerDocente from './routers/docente_routes.js';
 
-//Login con Google
+//Calificaciones
+import routerCalificacion from './routers/calificacion_routes.js';
 import session from 'express-session';
-import passport from './config/passport.js';
-import authRoutes from './routers/auth_routes.js';
+
+
 
 dotenv.config();
+console.log('SESSION_SECRET:', process.env.SESSION_SECRET);
+
 
 // Inicializaciones
 const app = express();
@@ -33,10 +34,6 @@ app.use(session({
     saveUninitialized: false
 }));
 
-// Inicializar passport
-app.use(passport.initialize());
-app.use(passport.session());
-
 
 //module.exports = app;
 
@@ -50,7 +47,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true })); 
 
 app.set('port', process.env.PORT || 3000);
-
+/*
 // Configuración de Cloudinary
 cloudinary.config({
     cloud_name:process.env.CLOUDINARY_CLOUD_NAME,
@@ -63,7 +60,7 @@ app.use(fileUpload({
     tempFileDir : './uploads',
     limits: { fileSize: 10 * 1024 * 1024 }, // hasta 10MB
 }))
-
+*/
 // Variables globales
 
 // Rutas para administradores
@@ -73,10 +70,10 @@ app.use('/api', routerAdministrador);
 app.use('/api',routerEstudiante);
 
 // Rutas para deportes
-app.use('/api',routerDeportes);
+app.use('/api',routerDocente);
 
-//Ruta Login Google
-app.use('/auth', authRoutes);
+//Ruta para calificaciones
+app.use('/api', routerCalificacion);
 
 
 // Rutas 
